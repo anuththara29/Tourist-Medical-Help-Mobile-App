@@ -2,17 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tourist_medical_help_mobileapp/screens/auth-ui/sign-in-screen.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tourist_medical_help_mobileapp/screens/auth-ui/forget-password-screen.dart';
+import 'package:tourist_medical_help_mobileapp/screens/auth-ui/sign-up-screen.dart';
 import 'package:tourist_medical_help_mobileapp/utils/app-constant.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: AppConstant.appMainColor,
           centerTitle: true,
-          title: Text("Sign Up", style: TextStyle(color: Colors.white)),
+          title: Text("Sign In", style: TextStyle(color: Colors.white)),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -35,11 +37,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
+                    Column(
+                      children: [
+                        Lottie.asset('assets/images/sign-in-icon.json'),
+                      ],
+                    ),
                     const SizedBox(
                       height: 2,
                     ),
                     Text(
-                      "Sign up now for instant travel health assistance.",
+                      "Your health, your journey, log in for travel care.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 17.0,
@@ -50,17 +57,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Column(
                   children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: "Username",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: BorderSide.none),
-                          fillColor: Colors.blue.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.person)),
-                    ),
-                    const SizedBox(height: 20),
                     TextField(
                       decoration: InputDecoration(
                           hintText: "Email",
@@ -84,27 +80,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       obscureText: true,
                     ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none),
-                        fillColor: Colors.blue.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
                   ],
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() => ForgetPasswordScreen());
+                    },
+                    child: Text(
+                      "Forget Password?",
+                      style: TextStyle(
+                          color: AppConstant.appMainColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 Container(
                     padding: const EdgeInsets.only(top: 3, left: 3),
                     child: ElevatedButton(
                       onPressed: () {},
                       child: const Text(
-                        "Sign up",
+                        "Sign In",
                         style: TextStyle(fontSize: 20),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -180,13 +178,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Already have an account?"),
+                    const Text("Don't have an account?"),
                     TextButton(
                         onPressed: () {
-                          Get.to(() => SignInScreen());
+                          Get.to(() => SignUpScreen());
                         },
                         child: const Text(
-                          "Sign In",
+                          "Sign Up",
                           style: TextStyle(
                               color: AppConstant.appMainColor,
                               fontWeight: FontWeight.bold),
